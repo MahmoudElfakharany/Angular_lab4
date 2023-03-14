@@ -1,0 +1,27 @@
+<div class="card" style="width: 18rem;">
+    <img src="{{ ThisProduct?.imgUrl }}" class="card-img-top" alt="..." />
+    <div class="card-body">
+      <h5 class="card-title">{{ ThisProduct?.productName }}</h5>
+      <p class="card-text">Price: {{ ThisProduct?.price }}</p>
+      <div [ngSwitch]="ThisProduct?.quantity">
+        <p *ngSwitchCase="0" class="card-text text-danger">Not Availabe.</p>
+        <p *ngSwitchCase="1" class="card-text text-warning">Only 1 Left.</p>
+        <p *ngSwitchDefault class="card-text">
+          Quantity: {{ ThisProduct?.quantity }}
+        </p>
+      </div>
+      <div *ngIf="ThisProduct?.quantity != 0">
+          <a href="#" class="btn btn-primary">Buy Now</a>
+      </div>
+      <div *ngIf="ThisProduct?.quantity != 0">
+        <a [routerLink]="['/products',ThisProduct?.id]" class="btn btn-primary mt-2">Show Details</a>
+    </div>
+      <div *ngIf="ThisProduct?.quantity == 0">
+          <a href="#" class="btn btn-seconday disabled">Sold Out</a>
+      </div>
+      <div *ngIf="ThisProduct?.quantity == 0">
+        <a href="#" class="btn btn-seconday disabled mt-2">Show Details</a>
+    </div>
+    </div>
+  </div>
+  
